@@ -11,13 +11,15 @@ class CreateUserService {
     async execute({ name, email, admin } : IUserRequest) {
         const usersRepositories = getCustomRepository(UsersRespositories);
 
-        if(!email)
+        if(!email) {
             throw new Error("E-mail field is required!");
+        }
 
         const userAlreadyExists = await usersRepositories.findOne({ email });
 
-        if(userAlreadyExists)
+        if(userAlreadyExists) {
             throw new Error("User already exists!");
+        }
 
         const user = usersRepositories.create({
             name,
