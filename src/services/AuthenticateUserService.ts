@@ -19,7 +19,7 @@ class AuthenticateUserService {
         }
 
         // compare 1234 with fx9g876hg0dfkm89fxh (hash)
-        const passwordMatch = compare(password, user.password);
+        const passwordMatch = await compare(password, user.password);
 
         if(!passwordMatch) {
             throw new Error("E-mail/Password incorrect");
